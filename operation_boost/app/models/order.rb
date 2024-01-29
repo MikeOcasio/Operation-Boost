@@ -14,9 +14,8 @@
   # - belongs_to :user
   # - belongs_to :product
 
-
-
 class Order < ApplicationRecord
   belongs_to :user
   belongs_to :product
+  has_one :promotion, through: :product
 end

@@ -15,7 +15,9 @@
   # - belongs_to :category
   # - has_many :orders
 
-
-class Product < ApplicationRecord
-  belongs_to :category
-end
+  class Product < ApplicationRecord
+    belongs_to :category
+    has_many :orders
+    has_many :carts
+    has_many :promotions, through: :product_promotions
+  end

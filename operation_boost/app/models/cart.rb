@@ -14,7 +14,8 @@
   # - belongs_to :product
 
 
-class Cart < ApplicationRecord
-  belongs_to :user
-  belongs_to :product
-end
+  class Cart < ApplicationRecord
+    belongs_to :user
+    belongs_to :product
+    has_one :promotion, through: :product
+  end
