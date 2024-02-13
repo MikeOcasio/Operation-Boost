@@ -23,7 +23,7 @@ class User < ApplicationRecord
 
   # Constants
   # ---------------
-  ROLE_LIST = ["admin", "skillmater", "customer"].freeze
+  ROLE_LIST = ["admin", "skillmater", "customer", "skillcoach", "coach"].freeze
 
   # Validations
   # ---------------

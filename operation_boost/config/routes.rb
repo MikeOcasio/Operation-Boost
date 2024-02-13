@@ -5,6 +5,10 @@ Rails.application.routes.draw do
 
   namespace :api do
     resources :users
+    resources :orders
+
+    get '/graveyard_orders', to: 'orders#graveyard_orders'
+    patch '/orders/:id/pick_up_order', to: 'orders#pick_up_order'
   end
 
 

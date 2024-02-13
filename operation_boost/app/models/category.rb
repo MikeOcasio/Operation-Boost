@@ -13,4 +13,9 @@
 
 
 class Category < ApplicationRecord
+
+  CAT_LIST = ["apex", "callofduty", "destiny2"].freeze
+
+  validates :name, presence: true, inclusion: { in: CAT_LIST }
+
 end

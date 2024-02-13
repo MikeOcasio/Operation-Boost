@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_01_29_225820) do
+ActiveRecord::Schema.define(version: 2024_02_12_232955) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,9 +50,17 @@ ActiveRecord::Schema.define(version: 2024_01_29_225820) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "promotion_id"
+    t.bigint "assigned_skill_master_id"
+    t.index ["assigned_skill_master_id"], name: "index_orders_on_assigned_skill_master_id"
     t.index ["product_id"], name: "index_orders_on_product_id"
     t.index ["promotion_id"], name: "index_orders_on_promotion_id"
     t.index ["user_id"], name: "index_orders_on_user_id"
+  end
+
+  create_table "product_attribute_categories", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "product_promotions", force: :cascade do |t|
@@ -74,9 +82,12 @@ ActiveRecord::Schema.define(version: 2024_01_29_225820) do
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "order_id"
     t.bigint "cart_id"
+    t.bigint "product_attribute_category_id"
+    t.boolean "is_priority", default: false
     t.index ["cart_id"], name: "index_products_on_cart_id"
     t.index ["category_id"], name: "index_products_on_category_id"
     t.index ["order_id"], name: "index_products_on_order_id"
+    t.index ["product_attribute_category_id"], name: "index_products_on_product_attribute_category_id"
   end
 
   create_table "promotions", force: :cascade do |t|
@@ -98,6 +109,8 @@ ActiveRecord::Schema.define(version: 2024_01_29_225820) do
     t.string "password_digest"
     t.text "encrypted_data"
     t.text "encrypted_symmetric_key"
+    t.bigint "preferred_skill_master_id"
+    t.index ["preferred_skill_master_id"], name: "index_users_on_preferred_skill_master_id"
   end
 
   add_foreign_key "carts", "products"
@@ -106,9 +119,12 @@ ActiveRecord::Schema.define(version: 2024_01_29_225820) do
   add_foreign_key "orders", "products"
   add_foreign_key "orders", "promotions"
   add_foreign_key "orders", "users"
+  add_foreign_key "orders", "users", column: "assigned_skill_master_id"
   add_foreign_key "product_promotions", "products"
   add_foreign_key "product_promotions", "promotions"
   add_foreign_key "products", "carts"
   add_foreign_key "products", "categories"
   add_foreign_key "products", "orders"
+  add_foreign_key "products", "product_attribute_categories"
+  add_foreign_key "users", "users", column: "preferred_skill_master_id"
 end
