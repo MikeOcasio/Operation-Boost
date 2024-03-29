@@ -45,6 +45,11 @@ class Api::UsersController < ApplicationController
     head :no_content
   end
 
+  def skillmasters
+    @users = User.where(role: 'skillmaster')
+    render json: @users
+  end
+
   private
 
   # Set the user based on the provided ID
