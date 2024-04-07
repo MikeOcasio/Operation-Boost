@@ -4,12 +4,14 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
   namespace :api do
+    get '/users/skillmasters', to: 'users#skillmasters'
     resources :users
     resources :orders
 
     get '/graveyard_orders', to: 'orders#graveyard_orders'
     patch '/orders/:id/pick_up_order', to: 'orders#pick_up_order'
   end
+
 
 
   get '/generate_symmetric_key', to: 'secure_data#generate_symmetric_key'
