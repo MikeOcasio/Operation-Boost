@@ -15,7 +15,13 @@
 #
 # Model for representing users in the application.
 class User < ApplicationRecord
-  has_secure_password
+  include Devise::Models::TwoFactorAuthenticatable
+  include Devise::Models::TwoFactorBackupable
+
+  #add Devise modules
+  devise :database_authenticatable, :registerable, :recoverable,
+  :rememberable, :trackable, :validatable, :confirmable, :lockable,
+  :timeoutable, :two_factor_authenticatable, :two_factor_backupable
 
   has_many :orders
   has_many :carts

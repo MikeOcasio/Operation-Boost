@@ -29,8 +29,8 @@ gem 'rbnacl'
 gem 'openssl'
 gem 'aasm'
 gem 'devise'
-gem 'devise_token_auth''
-gem 'two_factor_authentication'
+gem 'devise_token_auth'
+gem 'devise-two-factor'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
