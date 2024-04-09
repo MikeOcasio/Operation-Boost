@@ -61,6 +61,13 @@ GEM
     activerecord (7.0.8.1)
       activemodel (= 7.0.8.1)
       activesupport (= 7.0.8.1)
+    activerecord-session_store (2.1.0)
+      actionpack (>= 6.1)
+      activerecord (>= 6.1)
+      cgi (>= 0.3.6)
+      multi_json (~> 1.11, >= 1.11.2)
+      rack (>= 2.0.8, < 4)
+      railties (>= 6.1)
     activestorage (7.0.8.1)
       actionpack (= 7.0.8.1)
       activejob (= 7.0.8.1)
@@ -92,6 +99,7 @@ GEM
       xpath (~> 3.2)
     case_transform (0.2)
       activesupport
+    cgi (0.4.1)
     childprocess (4.1.0)
     concurrent-ruby (1.2.3)
     crass (1.0.6)
@@ -139,6 +147,7 @@ GEM
     mini_portile2 (2.8.5)
     minitest (5.21.2)
     msgpack (1.7.2)
+    multi_json (1.15.0)
     net-imap (0.4.10)
       date
       net-protocol
@@ -151,8 +160,6 @@ GEM
     nio4r (2.7.0)
     nokogiri (1.13.10)
       mini_portile2 (~> 2.8.0)
-      racc (~> 1.4)
-    nokogiri (1.13.10-x86_64-darwin)
       racc (~> 1.4)
     openssl (3.1.0)
     orm_adapter (0.5.0)
@@ -257,11 +264,13 @@ GEM
 PLATFORMS
   -darwin-23
   x86_64-darwin-21
+  x86_64-darwin-23
   x86_64-linux
 
 DEPENDENCIES
   aasm
   active_model_serializers
+  activerecord-session_store
   bcrypt (~> 3.1.7)
   bootsnap (>= 1.4.2)
   byebug
@@ -286,7 +295,7 @@ DEPENDENCIES
   webdrivers
 
 RUBY VERSION
-   ruby 3.2.0p0
+   ruby 3.3.0p0
 
 BUNDLED WITH
    2.4.22

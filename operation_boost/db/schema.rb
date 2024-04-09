@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_04_06_153927) do
+ActiveRecord::Schema[7.0].define(version: 2024_04_09_231739) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -98,6 +98,15 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_06_153927) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "sessions", force: :cascade do |t|
+    t.string "session_id", null: false
+    t.text "data"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["session_id"], name: "index_sessions_on_session_id", unique: true
+    t.index ["updated_at"], name: "index_sessions_on_updated_at"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email"
     t.string "first_name"
@@ -109,9 +118,9 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_06_153927) do
     t.text "encrypted_symmetric_key"
     t.bigint "preferred_skill_master_id"
     t.string "encrypted_password"
+    t.datetime "remember_created_at"
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
     t.integer "sign_in_count"
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
@@ -120,12 +129,12 @@ ActiveRecord::Schema[7.0].define(version: 2024_04_06_153927) do
     t.string "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
-    t.string "unconfirmed_email"
     t.integer "failed_attempts"
     t.string "unlock_token"
     t.datetime "locked_at"
-    t.string "otp_secret_key"
-    t.text "otp_backup_codes"
+    t.string "otp_secret"
+    t.integer "consumed_timestep"
+    t.boolean "otp_required_for_login"
     t.index ["preferred_skill_master_id"], name: "index_users_on_preferred_skill_master_id"
   end
 

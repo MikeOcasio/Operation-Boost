@@ -50,6 +50,42 @@ class Api::UsersController < ApplicationController
     render json: @users
   end
 
+  # Enable two-factor authentication for a user
+# app/controllers/users_controller.rb
+
+def enable_two_factor
+  @user.otp_required_for_login = true
+  @user.otp_secret = User.generate_otp_secret
+  @user.save!
+  UserMailer.otp(@user, @user.otp_secret).deliver_now
+  render json: { message: 'OTP has been sent to your email.' }
+end
+
+  # Disable two-factor authentication for a user
+  def disable_two_factor
+    @user.otp_required_for_login = false
+    @user.otp_secret = nil
+    @user.save!
+    head :no_content
+  end
+
+  # Verify a two-factor authentication code
+  def verify_two_factor
+    if @user.validate_and_consume_otp!(params[:otp_attempt])
+      render json: { success: true }
+    else
+      render json: { success: false }, status: :unauthorized
+    end
+  end
+
+  # Generate backup codes for a user
+  def generate_backup_codes
+    @user.generate_otp_backup_codes!
+    @user.save!
+    # Send the @user.otp_backup_codes to the user for them to save
+    render json: { backup_codes: @user.otp_backup_codes }
+  end
+
   private
 
   # Set the user based on the provided ID
