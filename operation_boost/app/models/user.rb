@@ -26,10 +26,14 @@ class User < ApplicationRecord
   :rememberable,
   :trackable,
   :validatable,
-  :confirmable,
-  :lockable,
-  :timeoutable
-  :two_factor_authenticatable
+  # :confirmable,
+  # :lockable,
+  # :timeoutable,
+  # :two_factor_authenticatable,
+  :jwt_authenticatable,
+  jwt_revocation_strategy: JwtDenylist
+
+
   # :two_factor_backupable
 
   has_many :orders
@@ -73,6 +77,10 @@ class User < ApplicationRecord
     else
       5.minutes
     end
+  end
+
+  def jwt_token
+    Warden::JWTAuth::UserEncoder.new.call(self, :user, nil).first
   end
 
 

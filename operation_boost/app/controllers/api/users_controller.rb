@@ -2,8 +2,19 @@
 
 class Api::UsersController < ApplicationController
   # Before executing certain actions, set the user based on the provided ID
+  skip_before_action :verify_authenticity_token
   before_action :set_user, only: [:show, :update, :destroy]
 
+  def login
+    @user = User.find_by(email: params[:email])
+    if @user&.valid_password?(params[:password])
+      byebug
+      sign_in @user
+      render json: { token: @user.jwt_token }
+    else
+      render json: { error: 'Invalid email or password' }, status: :unauthorized
+    end
+  end
   # GET /api/users
   # Return a list of all users
   def index

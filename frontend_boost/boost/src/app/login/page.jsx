@@ -10,22 +10,30 @@ export default function Login() {
     const email = event.target.elements.email.value;
     const password = event.target.elements.password.value;
 
-    try {
-      const response = await axios.post('/api/login', {
-        email: email,
-        password: password,
-      });
+    const response = await axios.post('http://localhost:3000/api/login', {
+      email: email,
+      password: password,
+    });
 
-     
-      console.log(response.data);
-    } catch (error) {
-      console.error(error);
+    if (response.status === 200) {
+    // Login was successful, store the token
+    localStorage.setItem('token', response.data.token);
+
+    console.log('Response:', response.data)
+
+    console.log('Token:', response.data.token)
+
+    // Redirect to home page
+    // window.location.href = 'http://localhost:3006/';
+    } else {
+    // Handle login failure
+    console.error('Login failed');
     }
   };
 
   return (
     <div className="flex items-center justify-center h-screen bg-gray-200">
-      <form /*onSubmit={handleSubmit}*/ className="w-64 p-6 bg-white rounded shadow">
+      <form onSubmit={handleSubmit} className="w-64 p-6 bg-white rounded shadow">
         <h2 className="mb-5 text-2xl font-bold text-gray-900">Login</h2>
 
         <input
