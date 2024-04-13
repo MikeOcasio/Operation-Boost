@@ -1,8 +1,11 @@
+'use client'
 import Image from 'next/image'
 import clsx from 'clsx'
 import image1 from '@/images/photos/RB_DESTINY_HUNTER1 1.png'
 import image2 from '@/images/photos/Ghost-2.png'
 import image3 from '@/images/photos/RB_Apex_WRAITH_2 1.png'
+import { useEffect } from 'react';
+import axios from 'axios';
 
 function Photos() {
   return (
@@ -28,10 +31,35 @@ function Photos() {
   )
 }
 
-export default async function Home() {
+
+
+export default function Home() {
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+
+    if (!token) {
+      window.location.href = '/login';
+      return;
+    }
+
+    axios.get('http://localhost:3000/api/current_user', {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+    .then(response => {
+      // console.log(response.data);
+    })
+    .catch(error => {
+      console.error(error);
+      localStorage.removeItem('token');
+      window.location.href = '/login';
+    });
+  }, []); 
+
   return (
     <>
       <Photos />
     </>
-  )
+  );
 }

@@ -75,6 +75,7 @@ Devise.setup do |config|
     jwt.dispatch_requests = [['POST', %r{^/login$}]]
     jwt.revocation_requests = [['DELETE', %r{^/logout$}]]
     jwt.expiration_time = 1.day.to_i
+    jwt.algorithm = ['HS256']
   end
 
   # Tell if authentication through request.params is enabled. True by default.

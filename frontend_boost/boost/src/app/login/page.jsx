@@ -19,12 +19,8 @@ export default function Login() {
     // Login was successful, store the token
     localStorage.setItem('token', response.data.token);
 
-    console.log('Response:', response.data)
-
-    console.log('Token:', response.data.token)
-
     // Redirect to home page
-    // window.location.href = 'http://localhost:3006/';
+    window.location.href = 'http://localhost:3006/';
     } else {
     // Handle login failure
     console.error('Login failed');

@@ -6,6 +6,8 @@ Rails.application.routes.draw do
     devise_for :users, skip: [:sessions, :registrations]
     get '/users/skillmasters', to: 'users#skillmasters'
     post '/login', to: 'users#login'
+    get '/current_user', to: 'users#show_current_user'
+
     resources :users
     resources :orders
 

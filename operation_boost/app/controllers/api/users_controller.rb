@@ -1,6 +1,8 @@
 # app/controllers/api/users_controller.rb
+require 'jwt'
 
 class Api::UsersController < ApplicationController
+  include ActionController::HttpAuthentication::Token::ControllerMethods
   # Before executing certain actions, set the user based on the provided ID
   skip_before_action :verify_authenticity_token
   before_action :set_user, only: [:show, :update, :destroy]
@@ -8,13 +10,50 @@ class Api::UsersController < ApplicationController
   def login
     @user = User.find_by(email: params[:email])
     if @user&.valid_password?(params[:password])
-      byebug
       sign_in @user
-      render json: { token: @user.jwt_token }
+      payload = { user_id: @user.id } # Define your payload
+      secret = Rails.application.credentials[:devise_jwt_secret_key]
+      algorithm = 'HS256'
+
+      # Manually encode the token
+      token = JWT.encode payload, secret, algorithm
+
+      puts "Encoded Token: #{token}"
+
+      render json: { token: token }
     else
       render json: { error: 'Invalid email or password' }, status: :unauthorized
     end
   end
+
+  def current_user
+    authenticate_with_http_token do |token, options|
+      puts "Authorization Header: #{request.headers['Authorization']}"
+      puts "Token: #{token}"
+      secret = Rails.application.credentials[:devise_jwt_secret_key]
+      algorithm = 'HS256'
+
+      # Manually decode the token
+      begin
+        decoded_token = JWT.decode token, secret, true, { algorithm: algorithm }
+        puts "Decoded Token: #{decoded_token}"
+        User.find(decoded_token[0]['user_id'])
+      rescue JWT::DecodeError => e
+        puts "JWT Decode Error: #{e.message}"
+      end
+    end
+  end
+
+
+  def show_current_user
+    if current_user
+      render json: current_user
+    else
+      render json: { error: 'Not Authorized' }, status: 401
+    end
+  end
+
+
   # GET /api/users
   # Return a list of all users
   def index
