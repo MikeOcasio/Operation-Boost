@@ -1,3 +1,5 @@
+
+
 import Image from 'next/image'
 import Link from 'next/link'
 import clsx from 'clsx'
@@ -16,9 +18,9 @@ function SocialLink({ className, href, children, icon: Icon }) {
     <li className={clsx(className, 'flex')}>
       <Link
         href={href}
-        className="group flex text-sm font-medium text-zinc-800 transition hover:text-teal-500 dark:text-zinc-200 dark:hover:text-teal-500"
+        className="flex text-sm font-medium transition group text-zinc-800 hover:text-teal-500 dark:text-zinc-200 dark:hover:text-teal-500"
       >
-        <Icon className="h-6 w-6 flex-none fill-zinc-500 transition group-hover:fill-teal-500" />
+        <Icon className="flex-none w-6 h-6 transition fill-zinc-500 group-hover:fill-teal-500" />
         <span className="ml-4">{children}</span>
       </Link>
     </li>
@@ -38,8 +40,7 @@ function MailIcon(props) {
 
 export const metadata = {
   title: 'About',
-  description:
-    '',
+  description: '',
 }
 
 export default function About() {
@@ -52,45 +53,63 @@ export default function About() {
               src={portraitImage}
               alt=""
               sizes="(min-width: 1024px) 32rem, 20rem"
-              className="aspect-square rotate-3 rounded-2xl bg-zinc-100 object-cover dark:bg-zinc-800"
+              className="object-cover aspect-square rotate-3 rounded-2xl bg-zinc-100 dark:bg-zinc-800"
             />
           </div>
         </div>
         <div className="lg:order-first lg:row-span-2">
           <h1 className="text-4xl font-bold tracking-tight text-zinc-800 sm:text-5xl dark:text-zinc-100">
-            I’m Spencer Sharp. I live in New York City, where I design the
-            future.
+            We're all about catering to our customers and meeting their unique
+            needs.
           </h1>
-          <div className="mt-6 space-y-7 text-base text-zinc-600 dark:text-zinc-400">
+          <div className="mt-6 text-base space-y-7 text-zinc-600 dark:text-zinc-400">
             <p>
-              I’ve loved making things for as long as I can remember, and wrote
-              my first program when I was 6 years old, just two weeks after my
-              mom brought home the brand new Macintosh LC 550 that I taught
-              myself to type on.
+              We offer a variety of options for you to choose from, so you can
+              find the perfect fit for your gaming goals. Whether you're looking
+              for a specific service, a particular game, or a specific
+              play-style, we've got you covered.
             </p>
             <p>
-              The only thing I loved more than computers as a kid was space.
-              When I was 8, I climbed the 40-foot oak tree at the back of our
-              yard while wearing my older sister’s motorcycle helmet, counted
-              down from three, and jumped — hoping the tree was tall enough that
-              with just a bit of momentum I’d be able to get to orbit.
+              Both our boosters and customers have their own profiles. Once you
+              place an order and your chosen booster activates it, you'll be
+              able to track the progress. This way, you'll know exactly when the
+              boosting process is in motion
             </p>
             <p>
-              I spent the next few summers indoors working on a rocket design,
-              while I recovered from the multiple surgeries it took to fix my
-              badly broken legs. It took nine iterations, but when I was 15 I
-              sent my dad’s Blackberry into orbit and was able to transmit a
-              photo back down to our family computer from space.
+              At Raven Boost, both our boosters and customers have their own
+              profiles. Once you place an order and your chosen booster
+              activates it, you'll be able to track the progress. This way,
+              you'll know exactly when the boosting process is in motion.
             </p>
             <p>
-              Today, I’m the founder of Planetaria, where we’re working on
-              civilian space suits and manned shuttle kits you can assemble at
-              home so that the next generation of kids really <em>can</em> make
-              it to orbit — from the comfort of their own backyards.
+              Once it's completed, you'll have the opportunity to view the
+              finished product before giving your approval. This extra step
+              ensures that both the booster and the customer are protected and
+              guarantees satisfaction before marking the order as completed.
             </p>
           </div>
         </div>
         <div className="lg:pl-20">
+          <h2 className="mb-10 text-2xl font-bold tracking-tight text-uppercase text-zinc-800 sm:text-3xl dark:text-zinc-100">
+            {String('About Us').toUpperCase()}
+          </h2>
+          <Container className="mb-10">
+            <div className="mt-6 text-base space-y-7 text-zinc-600 dark:text-zinc-400">
+              <p>
+                We're all about catering to our customers and meeting their
+                unique needs. We offer a variety of options for you to choose
+                from, so you can find the perfect fit for your gaming goals.
+                Whether you're looking for a specific service, a particular
+                game, or a specific play-style, we've got you covered.
+              </p>
+              <p>
+                Both our boosters and customers have their own profiles. Once
+                you place an order and your chosen booster activates it, you'll
+                be able to track the progress. This way, you'll know exactly
+                when the boosting process is in motion
+              </p>
+            </div>
+          </Container>
           <ul role="list">
             <SocialLink href="#" icon={XIcon}>
               Follow on X
@@ -107,7 +126,7 @@ export default function About() {
             <SocialLink
               href="mailto:spencer@planetaria.tech"
               icon={MailIcon}
-              className="mt-8 border-t border-zinc-100 pt-8 dark:border-zinc-700/40"
+              className="pt-8 mt-8 border-t border-zinc-100 dark:border-zinc-700/40"
             >
               spencer@planetaria.tech
             </SocialLink>

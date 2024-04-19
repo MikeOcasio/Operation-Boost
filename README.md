@@ -3,11 +3,12 @@
 ## Tech Stack
 
 - **Frontend:**
-  - React.js
+  - Next.js
   - Javascript
   - NPM (Node Package Manager)
-  - Material-UI (MUI)
+  - Tailwind CSS
 
 - **Backend:**
   - Rails
   - Ruby
+  
