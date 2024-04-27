@@ -3,11 +3,58 @@
 import { Fragment, useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { useTheme } from 'next-themes'
 import { Popover, Transition } from '@headlessui/react'
 import clsx from 'clsx'
+import {
+  BoltIcon,
+  PuzzlePieceIcon,
+  CpuChipIcon,
+} from '@heroicons/react/24/outline'
 
-import { Container } from '@/components/Container'
+const resources = [
+  {
+    name: 'Games',
+    description: 'Get all of your questions answered',
+    href: '#',
+    icon: PuzzlePieceIcon,
+  },
+  {
+    name: 'Skillmasters',
+    description: 'Learn how to maximize our platform',
+    href: '#',
+    icon: CpuChipIcon,
+  },
+  {
+    name: 'Boost',
+    description: 'See meet-ups and other events near you',
+    href: '#',
+    icon: BoltIcon,
+  },
+]
+const recentPosts = [
+  {
+    id: 1,
+    title: 'Boost your conversion rate',
+    href: '#',
+    date: 'Mar 5, 2023',
+    datetime: '2023-03-05',
+  },
+  {
+    id: 2,
+    title:
+      'How to use search engine optimization to drive traffic to your site',
+    href: '#',
+    date: 'Feb 25, 2023',
+    datetime: '2023-02-25',
+  },
+  {
+    id: 3,
+    title: 'Improve your customer experience',
+    href: '#',
+    date: 'Feb 21, 2023',
+    datetime: '2023-02-21',
+  },
+]
 
 function CloseIcon(props) {
   return (
@@ -38,38 +85,6 @@ function ChevronDownIcon(props) {
   )
 }
 
-function SunIcon(props) {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      strokeWidth="1.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden="true"
-      {...props}
-    >
-      <path d="M8 12.25A4.25 4.25 0 0 1 12.25 8v0a4.25 4.25 0 0 1 4.25 4.25v0a4.25 4.25 0 0 1-4.25 4.25v0A4.25 4.25 0 0 1 8 12.25v0Z" />
-      <path
-        d="M12.25 3v1.5M21.5 12.25H20M18.791 18.791l-1.06-1.06M18.791 5.709l-1.06 1.06M12.25 20v1.5M4.5 12.25H3M6.77 6.77 5.709 5.709M6.77 17.73l-1.061 1.061"
-        fill="none"
-      />
-    </svg>
-  )
-}
-
-function MoonIcon(props) {
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true" {...props}>
-      <path
-        d="M17.25 16.22a6.937 6.937 0 0 1-9.47-9.47 7.451 7.451 0 1 0 9.47 9.47ZM12.75 7C17 7 17 2.75 17 2.75S17 7 21.25 7C17 7 17 11.25 17 11.25S17 7 12.75 7Z"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-    </svg>
-  )
-}
-
 function MobileNavItem({ href, children }) {
   return (
     <li>
@@ -83,9 +98,9 @@ function MobileNavItem({ href, children }) {
 function MobileNavigation(props) {
   return (
     <Popover {...props}>
-      <Popover.Button className="flex items-center px-4 py-2 text-sm font-medium rounded-full shadow-lg group bg-white/90 text-zinc-800 shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90 dark:text-zinc-200 dark:ring-white/10 dark:hover:ring-white/20">
+      <Popover.Button className="group flex items-center rounded-full bg-white/90 px-4 py-2 text-sm font-medium text-zinc-800 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90 dark:text-zinc-200 dark:ring-white/10 dark:hover:ring-white/20">
         Menu
-        <ChevronDownIcon className="w-2 h-auto ml-3 stroke-zinc-500 group-hover:stroke-zinc-700 dark:group-hover:stroke-zinc-400" />
+        <ChevronDownIcon className="ml-3 h-auto w-2 stroke-zinc-500 group-hover:stroke-zinc-700 dark:group-hover:stroke-zinc-400" />
       </Popover.Button>
       <Transition.Root>
         <Transition.Child
@@ -110,24 +125,19 @@ function MobileNavigation(props) {
         >
           <Popover.Panel
             focus
-            className="fixed z-50 p-8 origin-top bg-white inset-x-4 top-8 rounded-3xl ring-1 ring-zinc-900/5 dark:bg-zinc-900 dark:ring-zinc-800"
+            className="fixed inset-x-4 top-8 z-50 origin-top rounded-3xl bg-white p-8 ring-1 ring-zinc-900/5 dark:bg-zinc-900 dark:ring-zinc-800"
           >
             <div className="flex flex-row-reverse items-center justify-between">
-              <Popover.Button aria-label="Close menu" className="p-1 -m-1">
-                <CloseIcon className="w-6 h-6 text-zinc-500 dark:text-zinc-400" />
+              <Popover.Button aria-label="Close menu" className="-m-1 p-1">
+                <CloseIcon className="h-6 w-6 text-zinc-500 dark:text-zinc-400" />
               </Popover.Button>
               <h2 className="text-sm font-medium text-zinc-600 dark:text-zinc-400">
                 Navigation
               </h2>
             </div>
             <nav className="mt-6">
-              <ul className="-my-2 text-base divide-y divide-zinc-100 text-zinc-800 dark:divide-zinc-100/5 dark:text-zinc-300">
-                <MobileNavItem href="/about">About</MobileNavItem>
-                <MobileNavItem href="/articles">Articles</MobileNavItem>
-                <MobileNavItem href="/projects">Projects</MobileNavItem>
-                <MobileNavItem href="/speaking">Speaking</MobileNavItem>
-                <MobileNavItem href="/uses">Uses</MobileNavItem>
-                <MobileNavItem href="/login">Login</MobileNavItem>
+              <ul className="-my-2 divide-y divide-zinc-100 text-base text-zinc-800 dark:divide-zinc-100/5 dark:text-zinc-300">
+                <PopOver />
               </ul>
             </nav>
           </Popover.Panel>
@@ -153,7 +163,7 @@ function NavItem({ href, children }) {
       >
         {children}
         {isActive && (
-          <span className="absolute h-px inset-x-1 -bottom-px bg-gradient-to-r from-teal-500/0 via-teal-500/40 to-teal-500/0 dark:from-teal-400/0 dark:via-teal-400/40 dark:to-teal-400/0" />
+          <span className="absolute inset-x-1 -bottom-px h-px bg-gradient-to-r from-teal-500/0 via-teal-500/40 to-teal-500/0 dark:from-teal-400/0 dark:via-teal-400/40 dark:to-teal-400/0" />
         )}
       </Link>
     </li>
@@ -163,36 +173,82 @@ function NavItem({ href, children }) {
 function DesktopNavigation(props) {
   return (
     <nav {...props}>
-      <ul className="flex w-full px-3 text-sm font-medium shadow-lg bg-white/90 text-zinc-800 shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90 dark:text-zinc-200 dark:ring-white/10">
-        <NavItem href="/">Home</NavItem>
-        <NavItem href="/about">About</NavItem>
-        <NavItem href="/articles">Articles</NavItem>
-        <NavItem href="/projects">Projects</NavItem>
-        <NavItem href="/login">Login</NavItem>
-      </ul>
+      <PopOver />
     </nav>
   )
 }
 
-function ThemeToggle() {
-  let { resolvedTheme, setTheme } = useTheme()
-  let otherTheme = resolvedTheme === 'dark' ? 'light' : 'dark'
-  let [mounted, setMounted] = useState(false)
-
-  useEffect(() => {
-    setMounted(true)
-  }, [])
-
+function PopOver() {
   return (
-    <button
-      type="button"
-      aria-label={mounted ? `Switch to ${otherTheme} theme` : 'Toggle theme'}
-      className="px-3 py-2 transition rounded-full shadow-lg group bg-white/90 shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90 dark:ring-white/10 dark:hover:ring-white/20"
-      onClick={() => setTheme(otherTheme)}
-    >
-      <SunIcon className="h-6 w-6 fill-zinc-100 stroke-zinc-500 transition group-hover:fill-zinc-200 group-hover:stroke-zinc-700 dark:hidden [@media(prefers-color-scheme:dark)]:fill-teal-50 [@media(prefers-color-scheme:dark)]:stroke-teal-500 [@media(prefers-color-scheme:dark)]:group-hover:fill-teal-50 [@media(prefers-color-scheme:dark)]:group-hover:stroke-teal-600" />
-      <MoonIcon className="hidden h-6 w-6 fill-zinc-700 stroke-zinc-500 transition dark:block [@media(prefers-color-scheme:dark)]:group-hover:stroke-zinc-400 [@media_not_(prefers-color-scheme:dark)]:fill-teal-400/10 [@media_not_(prefers-color-scheme:dark)]:stroke-teal-500" />
-    </button>
+    <Popover className="relative">
+      <Popover.Button className="inline-flex items-center gap-x-1 text-lg font-semibold leading-6">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="currentColor"
+          className="h-6 w-6"
+        >
+          <path
+            fillRule="evenodd"
+            d="M7.5 6a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM3.751 20.105a8.25 8.25 0 0 1 16.498 0 .75.75 0 0 1-.437.695A18.683 18.683 0 0 1 12 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 0 1-.437-.695Z"
+            clipRule="evenodd"
+          />
+        </svg>
+        {'|'}
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          strokeWidth={1.5}
+          stroke="currentColor"
+          className="color-white h-6 w-6"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            d="M3.75 5.25h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5"
+          />
+        </svg>
+        {/* <ChevronDownIcon className="h-5 w-5" aria-hidden="true" /> */}
+      </Popover.Button>
+
+      <Transition
+        as={Fragment}
+        enter="transition ease-out duration-200"
+        enterFrom="opacity-0 translate-y-1"
+        enterTo="opacity-100 translate-y-0"
+        leave="transition ease-in duration-150"
+        leaveFrom="opacity-100 translate-y-0"
+        leaveTo="opacity-0 translate-y-1"
+      >
+        <Popover.Panel className="absolute left-1/2 z-10 mt-5 flex w-screen max-w-max -translate-x-full px-4 text-white">
+          <div className="w-screen max-w-md flex-auto overflow-hidden rounded-3xl bg-gradient-to-b from-purple-600 via-yellow-600 to-transparent/50 text-sm leading-6 shadow-lg ring-1 ring-gray-900/5">
+            <div className="p-4">
+              {resources.map((item) => (
+                <div
+                  key={item.name}
+                  className="group relative flex gap-x-6 rounded-lg p-4 hover:bg-yellow-600/30"
+                >
+                  <div className="mt-1 flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
+                    <item.icon
+                      className="h-6 w-6 text-gray-600 group-hover:text-indigo-600"
+                      aria-hidden="true"
+                    />
+                  </div>
+                  <div>
+                    <a href={item.href} className="font-semibold ">
+                      {item.name}
+                      <span className="absolute inset-0" />
+                    </a>
+                    <p className="mt-1 ">{item.description}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </Popover.Panel>
+      </Transition>
+    </Popover>
   )
 }
 
@@ -262,40 +318,8 @@ export function Header() {
       }
     }
 
-    function updateAvatarStyles() {
-      if (!isHomePage) {
-        return
-      }
-
-      let fromScale = 1
-      let toScale = 36 / 64
-      let fromX = 0
-      let toX = 2 / 16
-
-      let scrollY = downDelay - window.scrollY
-
-      let scale = (scrollY * (fromScale - toScale)) / downDelay + toScale
-      scale = clamp(scale, fromScale, toScale)
-
-      let x = (scrollY * (fromX - toX)) / downDelay + toX
-      x = clamp(x, fromX, toX)
-
-      setProperty(
-        '--avatar-image-transform',
-        `translate3d(${x}rem, 0, 0) scale(${scale})`,
-      )
-
-      let borderScale = 1 / (toScale / scale)
-      let borderX = (-toX + x) * borderScale
-      let borderTransform = `translate3d(${borderX}rem, 0, 0) scale(${borderScale})`
-
-      setProperty('--avatar-border-transform', borderTransform)
-      setProperty('--avatar-border-opacity', scale === toScale ? '1' : '0')
-    }
-
     function updateStyles() {
       updateHeaderStyles()
-      updateAvatarStyles()
       isInitial.current = false
     }
 
@@ -311,29 +335,23 @@ export function Header() {
 
   return (
     <>
-      <header className="relative z-50 flex flex-col flex-none pointer-events-none">
+      <header className="pointer-events-none relative z-50 flex flex-none flex-col">
         {isHomePage && (
           <>
-            <div
-              // ref={avatarRef}
-              className="order-last mt-[calc(theme(spacing.16)-theme(spacing.3))]"
-            />
+            <div className="order-last mt-[calc(theme(spacing.16)-theme(spacing.3))]" />
           </>
         )}
         <div
           ref={headerRef}
-          className="z-10 flex justify-center w-full h-16 pt-6 bg-gradient-to-r from-purple-500 to-yellow-500"
+          className="z-10 flex h-16 w-full justify-end bg-gradient-to-r from-purp via-purple-800 to-yellow-500 pr-8 pt-6"
           style={{
             position: 'var(--header-position)',
           }}
         >
-          <Container className="flex items-center justify-between w-full h-full pointer-events-auto">
-              <div className="flex justify-around">
-                <MobileNavigation className="pointer-events-auto md:hidden" />
-                <DesktopNavigation className="hidden pointer-events-auto md:block" />
-                <ThemeToggle />
-              </div>
-          </Container>
+          <div className="flex justify-end">
+            <MobileNavigation className="pointer-events-auto md:hidden" />
+            <DesktopNavigation className="pointer-events-auto hidden md:block" />
+          </div>
         </div>
       </header>
     </>
