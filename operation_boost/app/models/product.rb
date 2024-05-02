@@ -15,7 +15,23 @@
   # - belongs_to :category
   # - has_many :orders
 
-
 class Product < ApplicationRecord
   belongs_to :category
+  belongs_to :product_attribute_category
+
+  has_many :orders
+  has_many :carts
+  has_many :promotions, through: :product_promotions
+
+  def to_s
+    "#{name} - $#{'%.2f' % price}"
+  end
+
+
+  def inspect
+    formatted_price = price ? '$' + format('%.2f', price) : 'N/A'
+    priority_status = is_priority ? 'Priority' : 'Not Priority'
+    "#<Product id: #{id}, name: #{name}, description: #{description}, price: #{formatted_price}, image: #{image}, category_id: #{category_id}, created_at: #{created_at}, updated_at: #{updated_at}, order_id: #{order_id}, cart_id: #{cart_id}, is_priority: #{priority_status}>"
+  end
+
 end
