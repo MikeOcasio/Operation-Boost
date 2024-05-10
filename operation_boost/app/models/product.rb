@@ -19,7 +19,7 @@ class Product < ApplicationRecord
   belongs_to :category
   belongs_to :product_attribute_category
 
-  has_many :orders
+  has_many :orders, through: :order_products
   has_many :carts
   has_many :promotions, through: :product_promotions
 

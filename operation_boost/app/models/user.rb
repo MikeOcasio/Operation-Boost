@@ -39,10 +39,10 @@ class User < ApplicationRecord
   has_many :orders
   has_many :carts
   has_many :notifications
-
-  # Constants
+  has_many :preferred_skill_masters
+  has_many :preferred_skill_masters_users, through: :preferred_skill_masters, source: :user
   # ---------------
-  ROLE_LIST = ["admin", "skillmater", "customer", "skillcoach", "coach"].freeze
+  ROLE_LIST = ["admin", "skillmaster", "customer", "skillcoach", "coach"].freeze
 
   # Validations
   # ---------------
