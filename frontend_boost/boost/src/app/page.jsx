@@ -10,8 +10,6 @@ import axios from 'axios'
 import { useState } from 'react'
 import { ChevronDownIcon, CheckIcon } from '@heroicons/react/20/solid'
 import { Switch, Dialog, RadioGroup } from '@headlessui/react'
-import { Fragment } from 'react'
-import { Popover, Transition } from '@headlessui/react'
 import {
   BookmarkSquareIcon,
   CalendarDaysIcon,
