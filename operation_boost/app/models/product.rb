@@ -31,7 +31,7 @@ class Product < ApplicationRecord
   def inspect
     formatted_price = price ? '$' + format('%.2f', price) : 'N/A'
     priority_status = is_priority ? 'Priority' : 'Not Priority'
-    "#<Product id: #{id}, name: #{name}, description: #{description}, price: #{formatted_price}, image: #{image}, category_id: #{category_id}, created_at: #{created_at}, updated_at: #{updated_at}, order_id: #{order_id}, cart_id: #{cart_id}, is_priority: #{priority_status}>"
+    "#<Product id: #{id}, name: #{name}, description: #{description}, price: #{formatted_price}, image: #{image}, category_id: #{category_id}, created_at: #{created_at}, updated_at: #{updated_at}, order_id: #{order_id}, cart_id: #{cart_id}, is_priority: #{priority_status}, tax: #{tax}>"
   end
 
 end

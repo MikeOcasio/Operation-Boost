@@ -9,6 +9,7 @@
   #  total_price: decimal
   #  created_at :datetime         not null
   #  updated_at :datetime         not null'
+  #  assingned_skill_master_id: bigint
   #  internal_id: string
   #
   # Relationships
@@ -20,6 +21,7 @@ class Order < ApplicationRecord
 
   belongs_to :user
   has_many :order_products, dependent: :destroy
+  belongs_to :assigned_skill_master, class_name: 'User', optional: true
   has_many :products, through: :order_products
   has_one :promotion, through: :product
 
@@ -82,6 +84,12 @@ class Order < ApplicationRecord
     calculate_tax
     calculate_total_price
     save
+  end
+
+  def assigned_skill_master_must_be_skill_master
+    if assigned_skill_master.present? && !assigned_skill_master.skill_master?
+      errors.add(:assigned_skill_master, 'must be a skill master')
+    end
   end
 
 end
