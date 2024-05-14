@@ -4,14 +4,14 @@ import { login } from '/lib.js'
 export default function Login() {
 
   return (
-    <div className="flex h-screen items-center justify-center bg-purple-900 ">
+    <div className="flex h-screen items-center justify-center bg-RussianViolet ">
       <form
         action={async (formData) => {
           'use server'
           await login(formData)
           redirect('/')
         }}
-        className="w-64 rounded border-2 border-yellow-500 bg-purple-800 p-6 shadow"
+        className="w-64 rounded border-2 border-yellow-500 p-6 shadow"
       >
         <h2 className="mb-5 text-2xl font-bold text-yellow-500">Login</h2>
 

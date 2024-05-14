@@ -5,11 +5,10 @@ import clsx from 'clsx'
 import image1 from '@/images/photos/RB_DESTINY_HUNTER1 1.png'
 import image2 from '@/images/photos/Ghost-2.png'
 import image3 from '@/images/photos/RB_Apex_WRAITH_2 1.png'
-import { useEffect } from 'react'
-import axios from 'axios'
+import APEX from '@/images/APEX.webp'
 import { useState } from 'react'
 import { ChevronDownIcon, CheckIcon } from '@heroicons/react/20/solid'
-import { Switch, Dialog, RadioGroup } from '@headlessui/react'
+import { Switch } from '@headlessui/react'
 import {
   BookmarkSquareIcon,
   CalendarDaysIcon,
@@ -74,7 +73,7 @@ function Photos() {
           <div
             key={image.src}
             className={clsx(
-              'dark:group-hover relative aspect-[9/10] w-44 flex-none  overflow-hidden bg-zinc-100  sm:w-72 dark:bg-transparent',
+              'dark:group-hover relative aspect-[9/10] w-44 flex-none overflow-hidden bg-zinc-100  sm:w-72 dark:bg-transparent',
             )}
           >
             <Image
@@ -91,30 +90,6 @@ function Photos() {
 }
 
 export default function Home() {
-  useEffect(() => {
-    const token = localStorage.getItem('token')
-
-    // if (!token) {
-    //   window.location.href = '/login'
-    //   return
-    // }
-
-    axios
-      .get('http://localhost:3000/api/current_user', {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      .then((response) => {
-        // console.log(response.data);
-      })
-      .catch((error) => {
-        console.error(error)
-        localStorage.removeItem('token')
-        // window.location.href = '/login';
-      })
-  }, [])
-
   return (
     <>
       <Photos />
@@ -140,7 +115,7 @@ function ContactSection() {
         mostPopular: false,
       },
       {
-        name: 'Destiny 2',
+        name: 'Apex Legends',
         id: 'tier-startup',
         href: '#',
         price: { monthly: '$30', annually: '$288' },
@@ -152,6 +127,7 @@ function ContactSection() {
           'PVP Glory Ranks Boost',
         ],
         mostPopular: true,
+        picture: APEX,
       },
       {
         name: 'Enterprise',
@@ -180,22 +156,31 @@ function ContactSection() {
           {pricing.tiers.map((tier) => (
             <div
               key={tier.id}
-              className={classNames(
+              className={`relative ${classNames(
                 tier.mostPopular
-                  ? 'bg-white/5 ring-2 ring-indigo-500'
+                  ? 'ring-2 ring-indigo-500'
                   : 'ring-1 ring-white/10',
-                'rounded-3xl p-8 xl:p-10',
-              )}
+                `rounded-3xl p-8 xl:p-10`,
+              )}`}
             >
+              <Image
+                src={tier.picture}
+                alt="background-picture"
+                sizes="100vw"
+                style={{ objectFit: 'cover', zIndex: '-1', opacity: '.4' }}
+                quality={100}
+                fill
+                className="rounded-3xl"
+              />
               <div className="flex items-center justify-between gap-x-4">
-                <h2
+                <h1
                   id={tier.id}
-                  className="text-lg font-semibold leading-8 text-white"
+                  className="text-4xl font-extrabold leading-9 text-white"
                 >
                   {tier.name}
-                </h2>
+                </h1>
               </div>
-              <p className="mt-4 text-sm leading-6 text-gray-300">
+              <p className="text-lg font-medium leading-6 text-gray-300">
                 {tier.description}
               </p>
               <p className="mt-6 flex items-baseline gap-x-1">
@@ -239,7 +224,7 @@ function ContactSection() {
 
       <HomePageAboutArea />
 
-      <div className="isolate bg-purp px-6 py-24 sm:py-32 lg:px-8">
+      <div className="bg-RussianViolet isolate px-6 py-24 sm:py-32 lg:px-8">
         <div
           className="absolute inset-x-0 top-[-10rem] -z-10 transform-gpu overflow-hidden text-white blur-3xl sm:top-[-20rem]"
           aria-hidden="true"

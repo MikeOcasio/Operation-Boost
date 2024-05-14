@@ -222,7 +222,7 @@ function PopOver() {
         leaveTo="opacity-0 translate-y-1"
       >
         <Popover.Panel className="absolute left-1/2 z-10 mt-5 flex w-screen max-w-max -translate-x-full px-4 text-white">
-          <div className="w-screen max-w-md flex-auto overflow-hidden rounded-3xl bg-gradient-to-b from-purple-600 via-yellow-600 to-transparent/50 text-sm leading-6 shadow-lg ring-1 ring-gray-900/5">
+          <div className="w-screen max-w-md flex-auto overflow-hidden rounded-3xl bg-gradient-to-b from-Xanthous via-DutchWhite to-transparent text-sm leading-6 shadow-lg ring-1 ring-gray-900/5">
             <div className="p-4">
               {resources.map((item) => (
                 <div
@@ -343,7 +343,7 @@ export function Header() {
         )}
         <div
           ref={headerRef}
-          className="z-10 flex h-16 w-full justify-end bg-gradient-to-r from-purp via-purple-800 to-yellow-500 pr-8 pt-6"
+          className="z-10 flex h-16 w-full justify-end bg-gradient-to-r from-RussianViolet via-MediumSlateBlue to-Xanthous pr-8 pt-6"
           style={{
             position: 'var(--header-position)',
           }}
