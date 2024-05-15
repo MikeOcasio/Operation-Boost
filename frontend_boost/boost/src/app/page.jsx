@@ -9,78 +9,31 @@ import APEX from '@/images/APEX.webp'
 import { useState } from 'react'
 import { ChevronDownIcon, CheckIcon } from '@heroicons/react/20/solid'
 import { Switch } from '@headlessui/react'
-import {
-  BookmarkSquareIcon,
-  CalendarDaysIcon,
-  LifebuoyIcon,
-} from '@heroicons/react/24/outline'
+import burningCity from '@/images/burningCity.png'
+import { purpleLane } from '@/images/purpleLane.png'
 import HomePageAboutArea from '@/components/HomePageAboutArea'
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-const resources = [
-  {
-    name: 'Help center',
-    description: 'Get all of your questions answered',
-    href: '#',
-    icon: LifebuoyIcon,
-  },
-  {
-    name: 'Guides',
-    description: 'Learn how to maximize our platform',
-    href: '#',
-    icon: BookmarkSquareIcon,
-  },
-  {
-    name: 'Events',
-    description: 'See meet-ups and other events near you',
-    href: '#',
-    icon: CalendarDaysIcon,
-  },
-]
-const recentPosts = [
-  {
-    id: 1,
-    title: 'Boost your conversion rate',
-    href: '#',
-    date: 'Mar 5, 2023',
-    datetime: '2023-03-05',
-  },
-  {
-    id: 2,
-    title:
-      'How to use search engine optimization to drive traffic to your site',
-    href: '#',
-    date: 'Feb 25, 2023',
-    datetime: '2023-02-25',
-  },
-  {
-    id: 3,
-    title: 'Improve your customer experience',
-    href: '#',
-    date: 'Feb 21, 2023',
-    datetime: '2023-02-21',
-  },
-]
-
 function Photos() {
   return (
-    <div className="mt-16 sm:mt-20">
-      <div className="-my-4 flex justify-center gap-5 overflow-hidden py-4 sm:gap-8">
+    <div className="mt-[64px]; relative z-30 mt-12 h-[30dvh] sm:mt-20">
+      <div className="h-100 flex justify-center gap-0 overflow-hidden sm:gap-0">
         {[image1, image3, image2].map((image) => (
           <div
             key={image.src}
             className={clsx(
-              'dark:group-hover relative aspect-[9/10] w-44 flex-none overflow-hidden bg-zinc-100  sm:w-72 dark:bg-transparent',
+              'dark:group-hover relative aspect-[9/10] w-44 flex-none overflow-hidden sm:w-72 dark:bg-transparent',
             )}
           >
             <Image
               src={image}
-              alt=""
+              alt="group of people playing video games"
               sizes="(min-width: 640px) 18rem, 11rem"
               className="absolute inset-0 h-full w-full object-cover"
+              quality={100}
             />
           </div>
         ))}
@@ -90,15 +43,6 @@ function Photos() {
 }
 
 export default function Home() {
-  return (
-    <>
-      <Photos />
-      <ContactSection />
-    </>
-  )
-}
-
-function ContactSection() {
   const pricing = {
     frequencies: [
       { value: 'monthly', label: 'Monthly', priceSuffix: '/month' },
@@ -140,19 +84,27 @@ function ContactSection() {
       },
     ],
   }
-  const [agreed, setAgreed] = useState(false)
   const [frequency, setFrequency] = useState(pricing.frequencies[0])
-
   return (
     <>
-      <div className="mx-auto mt-16 max-w-7xl px-6 sm:mt-32 lg:px-8">
-        <div className="mx-auto max-w-4xl text-center">
-          <h1 className="text-base font-semibold leading-7 text-indigo-400">
-            Boost Your Game, Your Way! Choose your dream team and leave the rest
-            to us.
-          </h1>
-        </div>
-        <div className="isolate mx-auto mt-10 grid max-w-md grid-cols-1 gap-8 pb-2 lg:mx-0 lg:max-w-none lg:grid-cols-3">
+      <Image
+        src={burningCity}
+        alt="background-picture"
+        style={{
+          objectFit: 'cover',
+          zIndex: '0',
+          height: '100%',
+          width: '100%',
+          position: 'absolute',
+          opacity: '0.5',
+        }}
+        quality={100}
+      />
+      <div>
+        <h1 className="flex center text-9xl font-extrabold">
+          operation Boost
+        </h1>
+        <div className="isolate mx-auto grid max-w-md grid-cols-1 gap-8 pb-2 pt-10 lg:mx-0 lg:max-w-none lg:grid-cols-3">
           {pricing.tiers.map((tier) => (
             <div
               key={tier.id}
@@ -160,17 +112,17 @@ function ContactSection() {
                 tier.mostPopular
                   ? 'ring-2 ring-indigo-500'
                   : 'ring-1 ring-white/10',
-                `rounded-3xl p-8 xl:p-10`,
+                `rounded-3xl p-8 xl:p-10 shadow-inner drop-shadow-xl`,
               )}`}
             >
               <Image
                 src={tier.picture}
                 alt="background-picture"
                 sizes="100vw"
-                style={{ objectFit: 'cover', zIndex: '-1', opacity: '.4' }}
+                style={{ objectFit: 'cover', zIndex: '-1', opacity: '1' }}
                 quality={100}
                 fill
-                className="rounded-3xl"
+                className="rounded-3xl backdrop-brightness-125 backdrop-contrast-125 backdrop-saturate-125"
               />
               <div className="flex items-center justify-between gap-x-4">
                 <h1
@@ -219,6 +171,25 @@ function ContactSection() {
               </ul>
             </div>
           ))}
+        </div>
+        <Photos />
+        <ContactSection className="relative z-10" />
+      </div>
+    </>
+  )
+}
+
+function ContactSection() {
+  const [agreed, setAgreed] = useState(false)
+
+  return (
+    <>
+      <div className="relative mx-auto max-w-7xl px-6  sm:mt-32 lg:px-8">
+        <div className="mx-auto max-w-4xl text-center">
+          <h1 className="pt-5 font-bold leading-7 text-indigo-400">
+            Boost Your Game, Your Way! Choose your dream team and leave the rest
+            to us.
+          </h1>
         </div>
       </div>
 

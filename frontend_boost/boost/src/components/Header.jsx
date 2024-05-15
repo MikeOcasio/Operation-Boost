@@ -338,7 +338,7 @@ export function Header() {
       <header className="pointer-events-none relative z-50 flex flex-none flex-col">
         {isHomePage && (
           <>
-            <div className="order-last mt-[calc(theme(spacing.16)-theme(spacing.3))]" />
+            <div className="order-last" />
           </>
         )}
         <div
