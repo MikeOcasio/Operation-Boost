@@ -13,6 +13,14 @@ const withMDX = nextMDX({
     remarkPlugins: [remarkGfm],
     rehypePlugins: [rehypePrism],
   },
+
+  images: {
+    remotePatterns: [
+      {
+        domains: ['th.bing.com'],
+      },
+    ],
+  },
 })
 
 export default withMDX(nextConfig)
