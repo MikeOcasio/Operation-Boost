@@ -10,7 +10,7 @@ import { useState } from 'react'
 import { ChevronDownIcon, CheckIcon } from '@heroicons/react/20/solid'
 import { Switch } from '@headlessui/react'
 import burningCity from '@/images/burningCity.png'
-import { purpleLane } from '@/images/purpleLane.png'
+import purpleLane from '@/images/purpleLane.png'
 import HomePageAboutArea from '@/components/HomePageAboutArea'
 
 function classNames(...classes) {
@@ -19,7 +19,7 @@ function classNames(...classes) {
 
 function Photos() {
   return (
-    <div className="mt-[64px]; relative z-30 mt-12 h-[30dvh] sm:mt-20">
+    <div className="relative z-30 h-[30dvh] sm:mt-20">
       <div className="h-100 flex justify-center gap-0 overflow-hidden sm:gap-0">
         {[image1, image3, image2].map((image) => (
           <div
@@ -101,7 +101,7 @@ export default function Home() {
         quality={100}
       />
       <div>
-        <h1 className="flex center text-9xl font-extrabold">
+        <h1 className="center flex justify-center text-9xl font-extrabold">
           operation Boost
         </h1>
         <div className="isolate mx-auto grid max-w-md grid-cols-1 gap-8 pb-2 pt-10 lg:mx-0 lg:max-w-none lg:grid-cols-3">
@@ -112,7 +112,7 @@ export default function Home() {
                 tier.mostPopular
                   ? 'ring-2 ring-indigo-500'
                   : 'ring-1 ring-white/10',
-                `rounded-3xl p-8 xl:p-10 shadow-inner drop-shadow-xl`,
+                `rounded-3xl p-8 shadow-inner drop-shadow-xl xl:p-10`,
               )}`}
             >
               <Image
@@ -122,7 +122,7 @@ export default function Home() {
                 style={{ objectFit: 'cover', zIndex: '-1', opacity: '1' }}
                 quality={100}
                 fill
-                className="rounded-3xl backdrop-brightness-125 backdrop-contrast-125 backdrop-saturate-125"
+                className="backdrop-saturate-125 rounded-3xl backdrop-brightness-125 backdrop-contrast-125"
               />
               <div className="flex items-center justify-between gap-x-4">
                 <h1
@@ -157,7 +157,7 @@ export default function Home() {
               </a>
               <ul
                 role="list"
-                className="mt-8 space-y-3 text-sm leading-6 text-gray-300 xl:mt-10"
+                className="mt-4 space-y-3 text-sm leading-6 text-gray-300 xl:mt-10"
               >
                 {tier.features.map((feature) => (
                   <li key={feature} className="flex gap-x-3">
@@ -173,6 +173,20 @@ export default function Home() {
           ))}
         </div>
         <Photos />
+        <Image
+          src={purpleLane}
+          alt="background-picture"
+          quality={100}
+          style={{
+            objectFit: 'cover',
+            zIndex: '0',
+            height: '100%',
+            width: '100%',
+            position: 'absolute',
+            opacity: '0.5',
+          }}
+          className="backdrop-brightness-125 backdrop-contrast-125"
+        />
         <ContactSection className="relative z-10" />
       </div>
     </>
