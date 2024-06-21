@@ -26,19 +26,23 @@ class User < ApplicationRecord
   :rememberable,
   :trackable,
   :validatable,
-  :confirmable,
-  :lockable,
-  :timeoutable
-  :two_factor_authenticatable
+  # :confirmable,
+  # :lockable,
+  # :timeoutable,
+  # :two_factor_authenticatable,
+  :jwt_authenticatable,
+  jwt_revocation_strategy: JwtDenylist
+
+
   # :two_factor_backupable
 
   has_many :orders
   has_many :carts
   has_many :notifications
-
-  # Constants
+  has_many :preferred_skill_masters
+  has_many :preferred_skill_masters_users, through: :preferred_skill_masters, source: :user
   # ---------------
-  ROLE_LIST = ["admin", "skillmater", "customer", "skillcoach", "coach"].freeze
+  ROLE_LIST = ["admin", "skillmaster", "customer", "skillcoach", "coach"].freeze
 
   # Validations
   # ---------------
@@ -73,6 +77,10 @@ class User < ApplicationRecord
     else
       5.minutes
     end
+  end
+
+  def jwt_token
+    Warden::JWTAuth::UserEncoder.new.call(self, :user, nil).first
   end
 
 

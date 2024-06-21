@@ -1,6 +1,7 @@
 import { Providers } from '@/app/providers'
 import { Layout } from '@/components/Layout'
 
+
 import '@/styles/tailwind.css'
 
 export const metadata = {
@@ -21,7 +22,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className="h-full antialiased" suppressHydrationWarning>
-      <body className="flex h-full bg-purp dark:bg-purp">
+      <body className="flex h-full bg-RussianViolet">
         <Providers>
           <div className="flex w-full">
             <Layout>{children}</Layout>

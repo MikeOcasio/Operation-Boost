@@ -1,38 +1,25 @@
-'use client'
-
-import axios from 'axios';
-// import React from 'react';
+import { redirect } from 'next/navigation'
+import { login } from '/lib.js'
 
 export default function Login() {
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-
-    const email = event.target.elements.email.value;
-    const password = event.target.elements.password.value;
-
-    try {
-      const response = await axios.post('/api/login', {
-        email: email,
-        password: password,
-      });
-
-     
-      console.log(response.data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
 
   return (
-    <div className="flex items-center justify-center h-screen bg-gray-200">
-      <form /*onSubmit={handleSubmit}*/ className="w-64 p-6 bg-white rounded shadow">
-        <h2 className="mb-5 text-2xl font-bold text-gray-900">Login</h2>
+    <div className="flex h-screen items-center justify-center bg-RussianViolet ">
+      <form
+        action={async (formData) => {
+          'use server'
+          await login(formData)
+          redirect('/')
+        }}
+        className="w-64 rounded border-2 border-yellow-500 p-6 shadow"
+      >
+        <h2 className="mb-5 text-2xl font-bold text-yellow-500">Login</h2>
 
         <input
           name="email"
           type="email"
           placeholder="Email"
-          className="block w-full p-2 mb-4 border border-gray-300 rounded"
+          className="mb-4 block w-full rounded border border-yellow-500 bg-white p-2"
           required
         />
 
@@ -40,14 +27,17 @@ export default function Login() {
           name="password"
           type="password"
           placeholder="Password"
-          className="block w-full p-2 mb-4 border border-gray-300 rounded"
+          className="mb-4 block w-full rounded border border-yellow-500 bg-white p-2"
           required
         />
 
-        <button type="submit" className="w-full px-4 py-2 text-white bg-blue-500 rounded hover:bg-blue-600">
+        <button
+          type="submit"
+          className="w-full rounded bg-green-700 px-4 py-2 text-white hover:bg-green-600"
+        >
           Login
         </button>
       </form>
     </div>
-  );
+  )
 }

@@ -6,7 +6,7 @@ const typographyStyles = require('./typography')
 module.exports = {
   content: ['./src/**/*.{js,jsx,ts,tsx}'],
   darkMode: 'selector',
-  plugins: [typographyPlugin],
+  plugins: [typographyPlugin, require('@tailwindcss/forms')],
   theme: {
     fontSize: {
       xs: ['0.8125rem', { lineHeight: '1.5rem' }],
@@ -26,9 +26,12 @@ module.exports = {
     typography: typographyStyles,
     extend: {
       colors: {
-        'purp': '#4D0060'
-      }
-    }
+        DutchWhite: '#EADCB3', 
+        Xanthous: '#E9B329',
+        RussianViolet: '#251D4E',
+        MediumSlateBlue: '#8762DA',
+        PalatinateBlue: '#4E32C7',
+      },
+    },
   },
-
 }
