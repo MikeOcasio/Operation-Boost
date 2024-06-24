@@ -22,7 +22,7 @@ function NavLink({ href, children }) {
 function SocialLink({ icon: Icon, ...props }) {
   return (
     <Link className="group -m-1 p-1" {...props}>
-      <Icon className="h-6 w-6 fill-white transition group-hover:fill-zinc-600 dark:fill-zinc-400 dark:group-hover:fill-zinc-300" />
+      <Icon className="h-6 w-6 fill-white transition group-hover:fill-zinc-400" />
     </Link>
   )
 }
@@ -31,7 +31,7 @@ function SocialLink({ icon: Icon, ...props }) {
 
 export function Footer() {
   return (
-    <footer className="z-10 flex h-16 w-full justify-between items-center bg-gradient-to-r from-Plum via-Plum to-Gold pr-8 py-6">
+    <footer className="z-10 flex h-16 w-full justify-between items-center bg-gradient-to-r from-Gold via-Plum to-Plum pr-8 py-6">
         <span>
         <div className="flex ml-12 gap-6">
           <h2 className='font-bold'>
@@ -57,7 +57,7 @@ export function Footer() {
         </span>
         <span>
         <a href="mailto:support@ravenboost.com"
-        className='italic underline mr-12'>
+        className='italic underline mr-12 text-Gold'>
         support@ravenboost.com
         </a>
         </span>
