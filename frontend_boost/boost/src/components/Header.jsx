@@ -1,60 +1,44 @@
 'use client'
+import { Fragment, useEffect, useRef } from 'react';
+import { IoGameControllerOutline } from "react-icons/io5";
+import { GiSergeant } from "react-icons/gi";
+import { HiOutlineBolt } from "react-icons/hi2";
+import { BiReceipt, BiSupport } from "react-icons/bi";
+import Image from 'next/image';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { Popover, Transition } from '@headlessui/react';
+import clsx from 'clsx';
 
-import { Fragment, useEffect, useRef, useState } from 'react'
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
-import { Popover, Transition } from '@headlessui/react'
-import clsx from 'clsx'
-import {
-  BoltIcon,
-  PuzzlePieceIcon,
-  CpuChipIcon,
-} from '@heroicons/react/24/outline'
+import ravenBoost from "@/images/ravenBoost.png";
 
 const resources = [
   {
     name: 'Games',
-    description: 'Get all of your questions answered',
     href: '#',
-    icon: PuzzlePieceIcon,
+    icon: <IoGameControllerOutline size={32} />,
   },
   {
     name: 'Skillmasters',
-    description: 'Learn how to maximize our platform',
     href: '#',
-    icon: CpuChipIcon,
+    icon: <GiSergeant size={32}/>,
   },
   {
     name: 'Boost',
-    description: 'See meet-ups and other events near you',
     href: '#',
-    icon: BoltIcon,
-  },
-]
-const recentPosts = [
-  {
-    id: 1,
-    title: 'Boost your conversion rate',
-    href: '#',
-    date: 'Mar 5, 2023',
-    datetime: '2023-03-05',
+    icon: <HiOutlineBolt size={32}/>,
   },
   {
-    id: 2,
-    title:
-      'How to use search engine optimization to drive traffic to your site',
+    name: 'Orders',
     href: '#',
-    date: 'Feb 25, 2023',
-    datetime: '2023-02-25',
+    icon: <BiReceipt size={32}/>,
   },
   {
-    id: 3,
-    title: 'Improve your customer experience',
+    name: 'Support',
     href: '#',
-    date: 'Feb 21, 2023',
-    datetime: '2023-02-21',
+    icon: <BiSupport size={32}/>,
   },
-]
+];
 
 function CloseIcon(props) {
   return (
@@ -68,7 +52,7 @@ function CloseIcon(props) {
         strokeLinejoin="round"
       />
     </svg>
-  )
+  );
 }
 
 function ChevronDownIcon(props) {
@@ -82,17 +66,7 @@ function ChevronDownIcon(props) {
         strokeLinejoin="round"
       />
     </svg>
-  )
-}
-
-function MobileNavItem({ href, children }) {
-  return (
-    <li>
-      <Popover.Button as={Link} href={href} className="block py-2">
-        {children}
-      </Popover.Button>
-    </li>
-  )
+  );
 }
 
 function MobileNavigation(props) {
@@ -137,18 +111,42 @@ function MobileNavigation(props) {
             </div>
             <nav className="mt-6">
               <ul className="-my-2 divide-y divide-zinc-100 text-base text-zinc-800 dark:divide-zinc-100/5 dark:text-zinc-300">
-                <PopOver />
+                {resources.map((item) => (
+                  <MobileNavItem key={item.name} href={item.href}>
+                    <div className="group relative flex gap-x-6 rounded-lg p-4 hover:bg-yellow-600/30">
+                      <div className="mt-1 flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
+                        {item.icon}
+                      </div>
+                      <div>
+                        <a href={item.href} className="font-semibold">
+                          {item.name}
+                          <span className="absolute inset-0" />
+                        </a>
+                      </div>
+                    </div>
+                  </MobileNavItem>
+                ))}
               </ul>
             </nav>
           </Popover.Panel>
         </Transition.Child>
       </Transition.Root>
     </Popover>
-  )
+  );
+}
+
+function MobileNavItem({ href, children }) {
+  return (
+    <li>
+      <Popover.Button as={Link} href={href} className="block py-2">
+        {children}
+      </Popover.Button>
+    </li>
+  );
 }
 
 function NavItem({ href, children }) {
-  let isActive = usePathname() === href
+  let isActive = usePathname() === href;
 
   return (
     <li>
@@ -167,7 +165,7 @@ function NavItem({ href, children }) {
         )}
       </Link>
     </li>
-  )
+  );
 }
 
 function DesktopNavigation(props) {
@@ -175,7 +173,7 @@ function DesktopNavigation(props) {
     <nav {...props}>
       <PopOver />
     </nav>
-  )
+  );
 }
 
 function PopOver() {
@@ -221,26 +219,22 @@ function PopOver() {
         leaveFrom="opacity-100 translate-y-0"
         leaveTo="opacity-0 translate-y-1"
       >
-        <Popover.Panel className="absolute left-1/2 z-10 mt-5 flex w-screen max-w-max -translate-x-full px-4 text-white">
-          <div className="w-screen max-w-md flex-auto overflow-hidden rounded-3xl bg-gradient-to-b from-Xanthous via-DutchWhite to-transparent text-sm leading-6 shadow-lg ring-1 ring-gray-900/5">
-            <div className="p-4">
+        <Popover.Panel className="absolute right-0 mt-5 text-white">
+          <div className="max-w-fit flex-auto overflow-hidden rounded-xl bg-gradient-to-b from-Plum to-Gold text-sm leading-6 shadow-lg ring-1 ring-gray-900/5">
+            <div className="p-2">
               {resources.map((item) => (
                 <div
                   key={item.name}
-                  className="group relative flex gap-x-6 rounded-lg p-4 hover:bg-yellow-600/30"
+                  className="group relative flex items-center gap-x-2 rounded-lg p-2 hover:bg-yellow-600/30"
                 >
-                  <div className="mt-1 flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
-                    <item.icon
-                      className="h-6 w-6 text-gray-600 group-hover:text-indigo-600"
-                      aria-hidden="true"
-                    />
+                  <div className="mt-1 flex h-11 w-11 flex-none items-center justify-center">
+                  {item.icon}
                   </div>
                   <div>
-                    <a href={item.href} className="font-semibold ">
+                    <a href={item.href} className="font-semibold text-lg">
                       {item.name}
-                      <span className="absolute inset-0" />
                     </a>
-                    <p className="mt-1 ">{item.description}</p>
+                    
                   </div>
                 </div>
               ))}
@@ -249,105 +243,110 @@ function PopOver() {
         </Popover.Panel>
       </Transition>
     </Popover>
-  )
+  );
 }
 
 function clamp(number, a, b) {
-  let min = Math.min(a, b)
-  let max = Math.max(a, b)
-  return Math.min(Math.max(number, min), max)
+  let min = Math.min(a, b);
+  let max = Math.max(a, b);
+  return Math.min(Math.max(number, min), max);
 }
 
 export function Header() {
-  let isHomePage = usePathname() === '/'
+  let isHomePage = usePathname() === '/';
 
-  let headerRef = useRef(null)
-  let avatarRef = useRef(null)
-  let isInitial = useRef(true)
+  let headerRef = useRef(null);
+  let avatarRef = useRef(null);
+  let isInitial = useRef(true);
 
   useEffect(() => {
-    let downDelay = avatarRef.current?.offsetTop ?? 0
-    let upDelay = 64
+    let downDelay = avatarRef.current?.offsetTop ?? 0;
+    let upDelay = 64;
 
     function setProperty(property, value) {
-      document.documentElement.style.setProperty(property, value)
+      document.documentElement.style.setProperty(property, value);
     }
 
     function removeProperty(property) {
-      document.documentElement.style.removeProperty(property)
+      document.documentElement.style.removeProperty(property);
     }
 
     function updateHeaderStyles() {
       if (!headerRef.current) {
-        return
+        return;
       }
 
-      let { top, height } = headerRef.current.getBoundingClientRect()
+      let { top, height } = headerRef.current.getBoundingClientRect();
       let scrollY = clamp(
         window.scrollY,
         0,
-        document.body.scrollHeight - window.innerHeight,
-      )
+        document.body.scrollHeight - window.innerHeight
+      );
 
       if (isInitial.current) {
-        setProperty('--header-position', 'sticky')
+        setProperty('--header-position', 'sticky');
       }
 
-      setProperty('--content-offset', `${downDelay}px`)
+      setProperty('--content-offset', `${downDelay}px`);
 
       if (isInitial.current || scrollY < downDelay) {
-        setProperty('--header-height', `${downDelay + height}px`)
-        setProperty('--header-mb', `${-downDelay}px`)
+        setProperty('--header-height', `${downDelay + height}px`);
+        setProperty('--header-mb', `${-downDelay}px`);
       } else if (top + height < -upDelay) {
-        let offset = Math.max(height, scrollY - upDelay)
-        setProperty('--header-height', `${offset}px`)
-        setProperty('--header-mb', `${height - offset}px`)
+        let offset = Math.max(height, scrollY - upDelay);
+        setProperty('--header-height', `${offset}px`);
+        setProperty('--header-mb', `${height - offset}px`);
       } else if (top === 0) {
-        setProperty('--header-height', `${scrollY + height}px`)
-        setProperty('--header-mb', `${-scrollY}px`)
+        setProperty('--header-height', `${scrollY + height}px`);
+        setProperty('--header-mb', `${-scrollY}px`);
       }
 
       if (top === 0 && scrollY > 0 && scrollY >= downDelay) {
-        setProperty('--header-inner-position', 'fixed')
-        removeProperty('--header-top')
-        removeProperty('--avatar-top')
+        setProperty('--header-inner-position', 'fixed');
+        removeProperty('--header-top');
+        removeProperty('--avatar-top');
       } else {
-        removeProperty('--header-inner-position')
-        setProperty('--header-top', '0px')
-        setProperty('--avatar-top', '0px')
+        removeProperty('--header-inner-position');
+        setProperty('--header-top', '0px');
+        setProperty('--avatar-top', '0px');
       }
     }
 
     function updateStyles() {
-      updateHeaderStyles()
-      isInitial.current = false
+      updateHeaderStyles();
+      isInitial.current = false;
     }
 
-    updateStyles()
-    window.addEventListener('scroll', updateStyles, { passive: true })
-    window.addEventListener('resize', updateStyles)
+    updateStyles();
+    window.addEventListener('scroll', updateStyles, { passive: true });
+    window.addEventListener('resize', updateStyles);
 
     return () => {
-      window.removeEventListener('scroll', updateStyles)
-      window.removeEventListener('resize', updateStyles)
-    }
-  }, [isHomePage])
+      window.removeEventListener('scroll', updateStyles);
+      window.removeEventListener('resize', updateStyles);
+    };
+  }, [isHomePage]);
 
   return (
     <>
-      <header className="pointer-events-none relative z-50 flex flex-none flex-col">
-        {isHomePage && (
-          <>
-            <div className="order-last" />
-          </>
-        )}
+      <header className="pointer-events-none fixed w-full z-50 flex flex-none flex-col">
+        {isHomePage && <div className="order-last" />}
         <div
           ref={headerRef}
-          className="z-10 flex h-16 w-full justify-end bg-gradient-to-r from-RussianViolet via-MediumSlateBlue to-Xanthous pr-8 pt-6"
+          className="z-10 flex h-16 w-full justify-between items-center bg-gradient-to-r from-Plum via-Plum to-Gold pr-8 py-6"
           style={{
             position: 'var(--header-position)',
           }}
         >
+          <div className="flex items-center">
+            <Image
+              src={ravenBoost}
+              height={50}
+              width={50}
+              alt="app logo"
+              className="ml-4"
+            />
+          </div>
           <div className="flex justify-end">
             <MobileNavigation className="pointer-events-auto md:hidden" />
             <DesktopNavigation className="pointer-events-auto hidden md:block" />
@@ -355,5 +354,5 @@ export function Header() {
         </div>
       </header>
     </>
-  )
+  );
 }
