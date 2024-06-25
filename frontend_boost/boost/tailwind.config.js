@@ -28,7 +28,11 @@ module.exports = {
       colors: {
         DutchWhite: '#EADCB3', 
         Xanthous: '#E9B329',
-        RussianViolet: '#251D4E',
+        Plum: '#4D0060',
+        CardPlum: 'rgba(49, 0, 70, 0.70)',
+        Gold: '#C28D04',
+        CardGold: 'rgba(194, 141, 4, 0.70)',
+        RussianViolet: '#16001C',
         MediumSlateBlue: '#8762DA',
         PalatinateBlue: '#4E32C7',
       },
