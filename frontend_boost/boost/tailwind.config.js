@@ -25,13 +25,18 @@ module.exports = {
     },
     typography: typographyStyles,
     extend: {
+      backgroundImage: {
+        'boostButton': 'url(\'../images/containers/boostButton.svg\')',
+        'howItWorks': 'url(\'../images/containers/leftTitle.svg\')',
+        'skillsMaster': 'url(\'../images/containers/rightTitle.svg\')',
+      },
       colors: {
         DutchWhite: '#EADCB3', 
         Xanthous: '#E9B329',
         Plum: '#4D0060',
-        CardPlum: 'rgba(49, 0, 70, 0.70)',
+        CardPlum: 'rgba(49, 0, 70, 0.85)',
         Gold: '#C28D04',
-        CardGold: 'rgba(194, 141, 4, 0.70)',
+        CardGold: 'rgba(194, 141, 4, 0.85)',
         RussianViolet: '#16001C',
         MediumSlateBlue: '#8762DA',
         PalatinateBlue: '#4E32C7',

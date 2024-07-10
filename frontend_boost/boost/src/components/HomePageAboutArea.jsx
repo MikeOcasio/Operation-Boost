@@ -7,6 +7,8 @@ import {
   ShoppingBagIcon,
   UserPlusIcon,
 } from '@heroicons/react/20/solid'
+import { GiProgression } from "react-icons/gi";
+import { MdAssignment } from "react-icons/md";
 import { Disclosure } from '@headlessui/react'
 import Image from 'next/image'
 import controllers from '@/images/photos/controllers.png'
@@ -81,17 +83,17 @@ const steps = [
   {
     title: "Place Order",
     description: "Choose the service you need and place an order.",
-    icon: <ShoppingBagIcon className="h-10 w-10 text-indigo-400" />,
+    icon: <ShoppingBagIcon className="h-10 w-10 text-Plum" />,
   },
   {
     title: "Booster Assigned",
     description: "A booster is assigned to your order and starts the process.",
-    icon: <CheckBadgeIcon className="h-10 w-10 text-indigo-400" />,
+    icon: <MdAssignment className="h-10 w-10 text-indigo-400" />,
   },
   {
     title: "Track Progress",
     description: "Monitor the progress of your order through your profile.",
-    icon: <PresentationChartLineIcon className="h-10 w-10 text-indigo-400" />,
+    icon: <GiProgression className="h-10 w-10 text-Plum" />,
   },
   {
     title: "Review and Approve",
@@ -102,8 +104,8 @@ const steps = [
 
 export default function HomePageAboutArea() {
   return (
-    <div className="px-6 py-32 lg:px-8">
-      <div className="mx-auto max-w-3xl text-base leading-7">
+    <div className="px-6 py-16 lg:px-8 max-w-3xl mx-auto">
+      <div className="mx-auto text-base leading-7">
         <div className='flex justify-end mt-32'>
           <Image
             src={controllers}
@@ -116,28 +118,33 @@ export default function HomePageAboutArea() {
             }}
           />
         </div>
-    
-        <h1 className="mt-4 text-3xl font-bold tracking-tight sm:text-4xl">
+        <div className='mt-4 bg-howItWorks bg-contain bg-no-repeat h-16 w-64'>
+        <h1 className="pl-12 pt-2 font-bold tracking-tight text-3xl">
           How It Works
         </h1>
-        <div className="mt-8 grid gap-6 justify-center sm:grid-cols-2 lg:grid-cols-3">
-          {steps.map((step) => (
-            <div key={step.title} className="rounded-3xl flex flex-col items-center bg-CardPlum p-8 h-56 shadow-inner drop-shadow-xl relative">
-              <div className="mb-4">
+        </div>
+        <div className="mt-16">
+          {steps.map((step, index) => (
+            <div key={step.title} className={`rounded-3xl flex items-center mb-8 px-8 py-2 shadow-inner drop-shadow-xl relative ${index % 2 === 0 ? 'flex-row bg-CardPlum' : 'flex-row-reverse bg-CardGold'}`} style={{ width: 'fit-content', maxWidth: '80%', marginLeft: index % 2 === 0 ? '0' : 'auto', marginRight: index % 2 === 0 ? 'auto' : '0' }}>
+              <div className="flex items-center">
                 {step.icon}
               </div>
-              <h4 className="text-lg mb-4 font-semibold">{step.title}</h4>
-              <p className="text-sm text-center">{step.description}</p>
+              <div className="flex flex-col mx-4">
+                <h4 className="text-lg mb-2 font-semibold">{step.title}</h4>
+                <p className="text-sm text-center">{step.description}</p>
+              </div>
             </div>
           ))}
         </div>
-        <div className='text-center mt-36'>
-        <h1 className="mt-20 text-3xl font-bold tracking-tight sm:text-4xl">
-          Skills Master
+        <div className='text-right mt-36 max-w-3xl mx-auto relative'>
+        <div className='bg-skillsMaster bg-contain bg-no-repeat absolute right-0 h-36 w-64'>
+        <h1 className="pr-12 pt-2 font-bold tracking-tight text-3xl">
+          Skill Masters
         </h1>
+        </div>
           <ul
             role="list"
-            className="mx-auto mt-8 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:grid-cols-2 lg:mx-0 lg:max-w-none lg:grid-cols-2"
+            className="mx-auto pt-36 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:grid-cols-2 lg:mx-0 lg:max-w-none lg:grid-cols-2"
           >
             {people.map((person) => (
               <li key={person.name} className="flex flex-col items-center">
@@ -162,9 +169,13 @@ export default function HomePageAboutArea() {
           </figure>
         </div>
         <div className="mt-36 lg:mx-auto lg:max-w-5xl">
-        <h1 className="text-3xl font-bold tracking-tight sm:text-4xl mt-32">FAQ</h1>
+        <div className='mt-4 bg-howItWorks bg-contain bg-no-repeat h-16 w-56'>
+        <h1 className="pl-20 pt-2 font-bold tracking-tight text-3xl">
+          FAQ
+        </h1>
+        </div>
         <div className='flex justify-between gap-6 items-center'>
-          <p className='rounded-3xl bg-CardGold p-6 mt-8 shadow-inner drop-shadow-xl'>
+          <p className='rounded-3xl bg-CardGold p-6 mt-16 shadow-inner drop-shadow-xl'>
             Discover answers to your questions about our services for PC, Xbox, and PlayStation gamers. Explore customization options, pricing, and our commitment to safety. We're here to enhance your gaming experience.
           </p>
           <Image
