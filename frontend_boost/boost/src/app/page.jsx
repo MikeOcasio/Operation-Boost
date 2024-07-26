@@ -11,7 +11,9 @@ import COD from '@/images/photos/codLogo.png'
 import { useState } from 'react'
 import { ChevronDownIcon, CheckIcon } from '@heroicons/react/20/solid'
 import { Switch } from '@headlessui/react'
-import burningCity from '@/images/burningCity.png'
+// import burningCity from '@/images/burningCity.png'
+// import burningCity from '@/images/cityBurn2.png'
+import burningCity from '@/images/cityBurn5.png'
 import purpleLane from '@/images/purpleLane.png'
 import HomePageAboutArea from '@/components/HomePageAboutArea'
 import GameCard from '@/components/GameCard'
@@ -26,6 +28,8 @@ export default function Home() {
       name: 'Destiny 2',
       id: 'game-destiny-2',
       href: '#',
+      isActive: false,
+      mostPopular: true,
       tagLine: 'Dominate the Destiny 2 Universe',
       description: 'Mention the custom boosting services for leveling, raid completions, and exotic quests with the assistance of experienced players.',
       features: [
@@ -41,6 +45,7 @@ export default function Home() {
       name: 'Apex Legends',
       id: 'game-apex-legends',
       href: '#',
+      isActive: true,
       mostPopular: true,
       tagLine: 'Elevate Your Apex Legends Experience',
       description: 'Highlight the opportunity to boost rankings, improve kill/death ratios (K/D), and level up faster with the help of top-tier players.',
@@ -57,6 +62,8 @@ export default function Home() {
       name: 'Call of Duty',
       id: 'game-call-of-duty',
       href: '#',
+      isActive: false,
+      mostPopular: true,
       tagLine: 'Achieve Call of Duty Supremacy',
       description: 'Focus on the boost services for multiplayer and Warzone, including rank boosting, weapon leveling, and unlocking achievements.',
       features: [
