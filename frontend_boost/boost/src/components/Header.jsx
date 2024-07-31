@@ -3,6 +3,7 @@ import { Fragment, useEffect, useRef } from 'react';
 import { IoGameControllerOutline } from "react-icons/io5";
 import { GiSergeant } from "react-icons/gi";
 import { HiOutlineBolt } from "react-icons/hi2";
+import { IoMenu } from "react-icons/io5";
 import { BiReceipt, BiSupport } from "react-icons/bi";
 import Image from 'next/image';
 import Link from 'next/link';
@@ -72,9 +73,8 @@ function ChevronDownIcon(props) {
 function MobileNavigation(props) {
   return (
     <Popover {...props}>
-      <Popover.Button className="group flex items-center rounded-full bg-white/90 px-4 py-2 text-sm font-medium text-zinc-800 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90 dark:text-zinc-200 dark:ring-white/10 dark:hover:ring-white/20">
-        Menu
-        <ChevronDownIcon className="ml-3 h-auto w-2 stroke-zinc-500 group-hover:stroke-zinc-700 dark:group-hover:stroke-zinc-400" />
+      <Popover.Button className="inline-flex items-center gap-x-1 text-4xl text-white font-semibold leading-6">
+        <IoMenu />
       </Popover.Button>
       <Transition.Root>
         <Transition.Child
@@ -99,22 +99,20 @@ function MobileNavigation(props) {
         >
           <Popover.Panel
             focus
-            className="fixed inset-x-4 top-8 z-50 origin-top rounded-3xl bg-white p-8 ring-1 ring-zinc-900/5 dark:bg-zinc-900 dark:ring-zinc-800"
+            className="fixed inset-x-4 top-8 z-50 origin-top rounded-3xl p-8 ring-1 ring-zinc-900/5 dark:bg-zinc-900 dark:ring-zinc-800"
           >
             <div className="flex flex-row-reverse items-center justify-between">
               <Popover.Button aria-label="Close menu" className="-m-1 p-1">
                 <CloseIcon className="h-6 w-6 text-zinc-500 dark:text-zinc-400" />
               </Popover.Button>
-              <h2 className="text-sm font-medium text-zinc-600 dark:text-zinc-400">
-                Navigation
-              </h2>
+        
             </div>
             <nav className="mt-6">
               <ul className="-my-2 divide-y divide-zinc-100 text-base text-zinc-800 dark:divide-zinc-100/5 dark:text-zinc-300">
                 {resources.map((item) => (
                   <MobileNavItem key={item.name} href={item.href}>
-                    <div className="group relative flex gap-x-6 rounded-lg p-4 hover:bg-yellow-600/30">
-                      <div className="mt-1 flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
+                    <div className="group relative flex items-center gap-x-6 rounded-lg p-4 hover:bg-yellow-600/30">
+                      <div className="mt-1 flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-inheri">
                         {item.icon}
                       </div>
                       <div>
@@ -179,35 +177,8 @@ function DesktopNavigation(props) {
 function PopOver() {
   return (
     <Popover className="relative">
-      <Popover.Button className="inline-flex items-center gap-x-1 text-lg font-semibold leading-6">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          viewBox="0 0 24 24"
-          fill="currentColor"
-          className="h-6 w-6"
-        >
-          <path
-            fillRule="evenodd"
-            d="M7.5 6a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM3.751 20.105a8.25 8.25 0 0 1 16.498 0 .75.75 0 0 1-.437.695A18.683 18.683 0 0 1 12 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 0 1-.437-.695Z"
-            clipRule="evenodd"
-          />
-        </svg>
-        {'|'}
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          strokeWidth={1.5}
-          stroke="currentColor"
-          className="color-white h-6 w-6"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M3.75 5.25h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5m-16.5 4.5h16.5"
-          />
-        </svg>
-        {/* <ChevronDownIcon className="h-5 w-5" aria-hidden="true" /> */}
+      <Popover.Button className="inline-flex items-center gap-x-1 text-5xl text-white font-semibold leading-6">
+       <IoMenu />
       </Popover.Button>
 
       <Transition
@@ -219,7 +190,7 @@ function PopOver() {
         leaveFrom="opacity-100 translate-y-0"
         leaveTo="opacity-0 translate-y-1"
       >
-        <Popover.Panel className="absolute right-0 mt-5 text-white">
+        <Popover.Panel className="absolute right-0 mt-2 text-white">
           <div className="max-w-fit flex-auto overflow-hidden rounded-xl bg-gradient-to-b from-Plum to-Gold text-sm leading-6 shadow-lg ring-1 ring-gray-900/5">
             <div className="p-2">
               {resources.map((item) => (
