@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     get '/users/skillmasters', to: 'users#skillmasters'
     post '/login', to: 'users#login'
     get '/current_user', to: 'users#show_current_user'
+    # get '/categories', to 'categories#index'
 
     resources :users
     resources :orders

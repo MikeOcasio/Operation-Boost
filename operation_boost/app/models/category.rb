@@ -14,8 +14,14 @@
 
 class Category < ApplicationRecord
 
-  CAT_LIST = ["apex", "callofduty", "destiny2"].freeze
+  CAT_LIST = ["apex", "callofduty", "destiny2"]
 
   validates :name, presence: true, inclusion: { in: CAT_LIST }
+
+  after_create :add_to_cat_list
+
+  def add_to_cat_list
+    CAT_LIST << self.name unless CAT_LIST.include?(self.name)
+  end
 
 end
