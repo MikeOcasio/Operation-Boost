@@ -119,7 +119,7 @@ export default function HomePageAboutArea() {
           />
         </div>
         <div className='mt-4 bg-howItWorks bg-contain bg-no-repeat h-16 w-64'>
-        <h1 className="pl-12 pt-2 font-bold tracking-tight text-3xl">
+        <h1 className="pl-12 pt-[.7rem] font-title tracking-widest text-4xl">
           How It Works
         </h1>
         </div>
@@ -138,7 +138,7 @@ export default function HomePageAboutArea() {
         </div>
         <div className='text-right mt-36 max-w-3xl mx-auto relative'>
         <div className='bg-skillsMaster bg-contain bg-no-repeat absolute right-0 h-36 w-64'>
-        <h1 className="pr-12 pt-2 font-bold tracking-tight text-3xl">
+        <h1 className="pr-12 pt-[.7rem] font-title tracking-widest text-4xl">
           Skill Masters
         </h1>
         </div>
@@ -170,7 +170,7 @@ export default function HomePageAboutArea() {
         </div>
         <div className="mt-36 lg:mx-auto lg:max-w-5xl">
         <div className='mt-4 bg-howItWorks bg-contain bg-no-repeat h-16 w-56'>
-        <h1 className="pl-20 pt-2 font-bold tracking-tight text-3xl">
+        <h1 className="pl-20 pt-2 font-title tracking-widest text-4xl">
           FAQ
         </h1>
         </div>

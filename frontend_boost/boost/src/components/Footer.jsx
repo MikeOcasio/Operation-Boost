@@ -57,7 +57,7 @@ export function Footer() {
         </span>
         <span>
         <a href="mailto:support@ravenboost.com"
-        className='italic underline mr-12 text-Gold'>
+        className='italic underline mr-12 text-white'>
         support@ravenboost.com
         </a>
         </span>

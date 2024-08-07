@@ -1,5 +1,6 @@
 const typographyPlugin = require('@tailwindcss/typography')
 
+
 const typographyStyles = require('./typography')
 
 /** @type {import('tailwindcss').Config} */
@@ -33,7 +34,7 @@ module.exports = {
       colors: {
         DutchWhite: '#EADCB3', 
         Xanthous: '#E9B329',
-        Plum: '#4D0060',
+        Plum: '#3a064d',
         CardPlum: 'rgba(49, 0, 70, 0.85)',
         Gold: '#C28D04',
         CardGold: 'rgba(194, 141, 4, 0.85)',
@@ -41,6 +42,9 @@ module.exports = {
         MediumSlateBlue: '#8762DA',
         PalatinateBlue: '#4E32C7',
       },
+      fontFamily: {
+        title: ['var(--font-akronim)'],
     },
+  },
   },
 }

@@ -1,8 +1,16 @@
 import { Providers } from '@/app/providers'
 import { Layout } from '@/components/Layout'
+import { Akronim } from 'next/font/google'
 
 
 import '@/styles/tailwind.css'
+
+const akronim = Akronim({
+  subsets: ['latin'],
+  weight: '400',
+  display: 'swap',
+  variable: '--font-akronim',
+})
 
 export const metadata = {
   title: {
@@ -21,7 +29,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className="h-full antialiased" suppressHydrationWarning>
+    <html lang="en" className={`h-full antialiased ${akronim.variable}`} suppressHydrationWarning>
       <body className="flex h-full bg-RussianViolet">
         <Providers>
           <div className="flex w-full">

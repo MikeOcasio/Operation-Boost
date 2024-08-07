@@ -1,19 +1,14 @@
 'use client'
 
 import Image from 'next/image'
-import clsx from 'clsx'
 import image1 from '@/images/characters.png'
-import image2 from '@/images/photos/Ghost-2.png'
-import image3 from '@/images/photos/RB_Apex_WRAITH_2 1.png'
 import APEX from '@/images/photos/apexLogo.png'
 import DESTINY from '@/images/photos/destinyLogo.png'
 import COD from '@/images/photos/codLogo.png'
 import { useState } from 'react'
-import { ChevronDownIcon, CheckIcon } from '@heroicons/react/20/solid'
 import { Switch } from '@headlessui/react'
-// import burningCity from '@/images/burningCity.png'
-// import burningCity from '@/images/cityBurn2.png'
-import burningCity from '@/images/cityBurn5.png'
+import burningCity from '@/images/cityBurn2.png'
+
 import purpleLane from '@/images/purpleLane.png'
 import HomePageAboutArea from '@/components/HomePageAboutArea'
 import GameCard from '@/components/GameCard'
@@ -101,8 +96,8 @@ export default function Home() {
             className="backdrop-contrast-125"
           />
         </div>
-        <h1 className="center flex justify-center text-5xl tracking-widest font-extrabold pt-20">
-          RavenBoost
+        <h1 className="center flex justify-center text-6xl tracking-widest pt-20 font-title text-gray-300">
+          RAVENBOOST
         </h1>
         <div className="h-100 flex justify-center gap-0 relative sm:gap-0">
           <Image
@@ -156,7 +151,7 @@ function ContactSection() {
     <>
       <div className="px-6 sm:py-32 lg:px-8 max-w-3xl mx-auto relative">
       <div className='bg-skillsMaster bg-contain bg-no-repeat absolute right-0 h-36 w-64'>
-        <h1 className="pr-16 text-right pt-2 font-bold tracking-tight text-3xl">
+        <h1 className="pr-16 text-right pt-[.7rem] font-title tracking-widest text-4xl">
           Contact Us
         </h1>
         </div>
