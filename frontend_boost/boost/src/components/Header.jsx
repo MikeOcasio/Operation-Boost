@@ -318,10 +318,10 @@ export function Header() {
               className="ml-4"
             />
           </div>
-          <div className="flex justify-end">
+          {/* <div className="flex justify-end">
             <MobileNavigation className="pointer-events-auto md:hidden" />
             <DesktopNavigation className="pointer-events-auto hidden md:block" />
-          </div>
+          </div> */}
         </div>
       </header>
     </>
