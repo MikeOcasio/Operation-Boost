@@ -91,7 +91,7 @@ export default function Home() {
               objectFit: 'cover',
               height: '100%',
               width: '100%',
-              opacity: '0.6',
+              // opacity: '0.6',
             }}
             className="backdrop-contrast-125"
           />
@@ -134,7 +134,7 @@ export default function Home() {
         </div>
         <div className="isolate justify-items-center mx-auto grid gap-8 max-w-md grid-cols-1 lg:mx-auto lg:max-w-5xl lg:grid-cols-3">
           {games.map((game) => (
-            <GameCard key={game.id} game={game} />
+            <GameCard key={game.id} game={game} isActive={game.isActive} />
           ))}
         </div>
         <HomePageAboutArea />

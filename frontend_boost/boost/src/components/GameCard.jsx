@@ -46,13 +46,18 @@ const GameCard = ({ game }) => {
           </li>
         ))}
       </ul>
-      <button
+      {game.isActive ? (
+        <button
         onClick={() => window.location.href = game.href}
         aria-describedby={game.id}
         aria-label='Boost Button'
         title='Boost Button'
         className='bg-boostButton bg-contain bg-no-repeat bg-center overflow-visible h-10 max-w-48 block px-3 py-2 absolute left-0 right-0 bottom-6 mx-auto transition-transform duration-300 hover:scale-110'
       />
+      ) :
+      <p className="text-center text-md text-white italic absolute left-0 right-0 bottom-6">
+        Coming Soon
+        </p>}
     </div>
   );
 }
